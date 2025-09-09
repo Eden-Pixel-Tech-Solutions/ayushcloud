@@ -36,6 +36,38 @@ const ReceptionistDashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const getSectionTitle = () => {
+    switch (activeSection) {
+      case 'register-patient':
+        return 'Register New Patient';
+      case 'search-patients':
+        return 'Search Patients';
+      case 'book-appointment':
+        return 'Book Appointment';
+      case 'view-appointments':
+        return 'View Appointments';
+      case 'reschedule-cancel':
+        return 'Reschedule/Cancel';
+      case 'generate-bills':
+        return 'Generate Bills';
+      case 'transaction-history':
+        return 'Transaction History';
+      case 'pending-payments':
+        return 'Pending Payments';
+      case 'profile-settings':
+        return 'Profile Settings';
+      default:
+        return 'Dashboard';
+    }
+  };
+
+  const handleMenuToggle = (menuKey) => {
+    setExpandedMenus((prevExpandedMenus) => ({
+      ...prevExpandedMenus,
+      [menuKey]: !prevExpandedMenus[menuKey],
+    }));
+  };
+
   const quickStats = [
     {
       title: "Today's Patients",
@@ -219,7 +251,7 @@ const ReceptionistDashboard = () => {
         );
       
       case 'register-patient':
-        return <RegisterPatient />;
+        return <RegisterPatient showHeader={false} />;
 
       case 'search-patients':
         return <SearchPatients />;
@@ -280,6 +312,7 @@ const ReceptionistDashboard = () => {
             >
               <Menu size={24} />
             </button>
+            <h1>{getSectionTitle()}</h1>
             <div className="search-bar">
               <Search size={20} />
               <input 

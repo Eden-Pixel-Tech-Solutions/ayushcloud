@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Search } from 'lucide-react';
 import '../../assets/css/registerpatient.css';
 
-const RegisterPatient = () => {
+const RegisterPatient = ({ title = "Register New Patient", searchPlaceholder = "Search patients...", showHeader = true }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     abhaId: '',
@@ -44,10 +45,20 @@ const RegisterPatient = () => {
 
   return (
     <div className="register-patient-container">
-      <div className="page-header">
-        <h2 className="page-title">Register New Patient</h2>
-        <p className="page-subtitle">Add new patient with ABHA ID integration</p>
-      </div>
+      {showHeader && (
+        <header className="top-bar">
+          <div className="top-bar-left">
+            <h1>{title}</h1>
+            <div className="search-bar">
+              <Search size={20} />
+              <input 
+                type="text" 
+                placeholder={searchPlaceholder}
+              />
+            </div>
+          </div>
+        </header>
+      )}
       
       <div className="form-card">
         <form onSubmit={handleSubmit}>
