@@ -6,6 +6,7 @@ import RecpDashboard from './Recp/RecpDashboard';
 import DocDashboard from './Doctor/DocDashboard';
 import HospitalDashboard from './Hospital/HospitalDashboard';
 import PatientDashboard from './patient/PatientDashboard';
+import SuperDashboard from './SuperAdmin/SuperDashboard';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,8 @@ const Login = () => {
       'recp@edenpixel.in': { password: '123456', role: 'recp', name: 'Receptionist' },
       'doc@edenpixel.in': { password: '123456', role: 'doctor', name: 'Doctor' },
       'government@edenpixel.in': { password: '123456', role: 'government', name: 'Government' },
-      'patient@edenpixel.in': { password: '123456', role: 'patient', name: 'Patient' }
+      'patient@edenpixel.in': { password: '123456', role: 'patient', name: 'Patient' },
+      'superadmin@edenpixel.in': { password: '123456', role: 'superadmin', name: 'Super Admin' }
     };
 
     setTimeout(() => {
@@ -88,6 +90,8 @@ const Login = () => {
         return <HospitalDashboard user={currentUser} onLogout={handleLogout} />;
       case 'patient':
         return <PatientDashboard user={currentUser} onLogout={handleLogout} />;
+      case 'superadmin':
+        return <SuperDashboard user={currentUser} onLogout={handleLogout} />;
       default:
         return <div>Unknown user role</div>;
     }
@@ -203,6 +207,7 @@ const Login = () => {
               Doctor: doc@edenpixel.in<br />
               Government: government@edenpixel.in<br />
               Patient: patient@edenpixel.in<br />
+              SuperAdmin: superadmin@edenpixel.in<br />
               Password: 123456
             </div>
           </form>
