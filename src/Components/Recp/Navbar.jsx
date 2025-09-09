@@ -1,21 +1,12 @@
 import React from 'react';
 import { 
-  Users, 
-  Calendar, 
-  CreditCard, 
-  Settings, 
-  Plus,
-  Search,
-  Clock,
-  AlertCircle,
   X,
   LogOut,
-  BarChart3,
   Activity,
-  Eye,
   ChevronDown,
   ChevronRight
 } from 'lucide-react';
+import '../../assets/css/navbar.css';
 
 const Navbar = ({ 
   activeSection, 
@@ -29,46 +20,41 @@ const Navbar = ({
     {
       id: 'dashboard',
       label: 'Dashboard',
-      icon: BarChart3,
       section: 'main'
     },
     {
       id: 'patient-management',
       label: 'Patient Management',
-      icon: Users,
       section: 'main',
       submenu: [
-        { id: 'register-patient', label: '➕ Register New Patient', icon: Plus },
-        { id: 'view-patients', label: '👤 View/Edit Patient Details', icon: Eye },
-        { id: 'search-patients', label: '🔍 Search Patients', icon: Search }
+        { id: 'register-patient', label: 'Register New Patient' },
+        { id: 'view-patients', label: 'View/Edit Patient Details' },
+        { id: 'search-patients', label: 'Search Patients' }
       ]
     },
     {
       id: 'appointments',
       label: 'Appointments',
-      icon: Calendar,
       section: 'main',
       submenu: [
-        { id: 'book-appointment', label: '📅 Book Appointment', icon: Plus },
-        { id: 'todays-appointments', label: '📋 View Today\'s Appointments', icon: Calendar },
-        { id: 'reschedule', label: '⏳ Reschedule/Cancel', icon: Clock }
+        { id: 'book-appointment', label: 'Book Appointment' },
+        { id: 'todays-appointments', label: 'View Today\'s Appointments' },
+        { id: 'reschedule', label: 'Reschedule/Cancel' }
       ]
     },
     {
       id: 'billing',
       label: 'Billing & Payments',
-      icon: CreditCard,
       section: 'main',
       submenu: [
-        { id: 'generate-bills', label: '💳 Generate Bills', icon: Plus },
-        { id: 'transaction-history', label: '📜 View Transaction History', icon: Activity },
-        { id: 'pending-payments', label: '✅ Pending Payments', icon: AlertCircle }
+        { id: 'generate-bills', label: 'Generate Bills' },
+        { id: 'transaction-history', label: 'View Transaction History' },
+        { id: 'pending-payments', label: 'Pending Payments' }
       ]
     },
     {
       id: 'profile',
       label: 'Profile & Settings',
-      icon: Settings,
       section: 'bottom'
     }
   ];
@@ -103,7 +89,6 @@ const Navbar = ({
       <nav className="sidebar-nav">
         <div className="nav-section">
           {navigationItems.filter(item => item.section === 'main').map((item) => {
-            const IconComponent = item.icon;
             const isActive = activeSection === item.id;
             const hasSubmenu = item.submenu && item.submenu.length > 0;
             const isExpanded = expandedMenus[item.id];
@@ -121,7 +106,6 @@ const Navbar = ({
                     }
                   }}
                 >
-                  <IconComponent size={20} />
                   <span>{item.label}</span>
                   {hasSubmenu && (
                     <div className="submenu-arrow">
@@ -153,7 +137,6 @@ const Navbar = ({
 
         <div className="nav-section bottom">
           {navigationItems.filter(item => item.section === 'bottom').map((item) => {
-            const IconComponent = item.icon;
             const isActive = activeSection === item.id;
 
             return (
@@ -165,7 +148,6 @@ const Navbar = ({
                   setSidebarOpen(false);
                 }}
               >
-                <IconComponent size={20} />
                 <span>{item.label}</span>
               </button>
             );
