@@ -14,6 +14,15 @@ import {
   FileText
 } from 'lucide-react';
 import Navbar from './Navbar';
+import RegisterPatient from './RegisterPatient';
+import SearchPatients from './SearchPatients';
+import BookAppointment from './BookAppointment';
+import ViewAppointments from './ViewAppointments';
+import RescheduleCancel from './RescheduleCancel';
+import GenerateBills from './GenerateBills';
+import TransactionHistory from './TransactionHistory';
+import PendingPayments from './PendingPayments';
+import ProfileSettings from './ProfileSettings';
 import '../../assets/css/RecpDashboard.css';
 
 const ReceptionistDashboard = () => {
@@ -87,7 +96,7 @@ const ReceptionistDashboard = () => {
             {/* Header */}
             <div className="dashboard-header">
               <div>
-                <h1 className="dashboard-title">Welcome back, Dr. Priya! 👋</h1>
+                <h1 className="dashboard-title">Welcome back, Reception Staff! 👋</h1>
                 <p className="dashboard-subtitle">Here's the latest updates for the last 7 days, check now</p>
               </div>
               <div className="header-actions">
@@ -135,7 +144,12 @@ const ReceptionistDashboard = () => {
               <div className="appointments-card">
                 <div className="card-header">
                   <h3 className="card-title">Today's Appointments</h3>
-                  <button className="view-all-btn">View All</button>
+                  <button 
+                    className="view-all-btn"
+                    onClick={() => setActiveSection('view-appointments')}
+                  >
+                    View All
+                  </button>
                 </div>
                 <div className="appointments-list">
                   {recentAppointments.map((appointment) => (
@@ -205,98 +219,31 @@ const ReceptionistDashboard = () => {
         );
       
       case 'register-patient':
-        return (
-          <div className="page-content">
-            <div className="page-header">
-              <h2 className="page-title">Register New Patient</h2>
-              <p className="page-subtitle">Add new patient with ABHA ID integration</p>
-            </div>
-            <div className="form-card">
-              <div className="form-grid">
-                <div className="form-group">
-                  <label>Full Name *</label>
-                  <input type="text" placeholder="Enter patient's full name" />
-                </div>
-                <div className="form-group">
-                  <label>ABHA ID</label>
-                  <input type="text" placeholder="12-3456-7890-1234" />
-                </div>
-                <div className="form-group">
-                  <label>Mobile Number *</label>
-                  <input type="tel" placeholder="+91 98765 43210" />
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input type="email" placeholder="patient@example.com" />
-                </div>
-                <div className="form-group">
-                  <label>Date of Birth *</label>
-                  <input type="date" />
-                </div>
-                <div className="form-group">
-                  <label>Gender *</label>
-                  <select>
-                    <option>Select Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-actions">
-                <button className="btn secondary">Cancel</button>
-                <button className="btn primary">Register Patient</button>
-              </div>
-            </div>
-          </div>
-        );
+        return <RegisterPatient />;
+
+      case 'search-patients':
+        return <SearchPatients />;
 
       case 'book-appointment':
-        return (
-          <div className="page-content">
-            <div className="page-header">
-              <h2 className="page-title">Book Appointment</h2>
-              <p className="page-subtitle">Schedule appointment with doctor and time slot</p>
-            </div>
-            <div className="form-card">
-              <div className="form-grid">
-                <div className="form-group">
-                  <label>Patient *</label>
-                  <select>
-                    <option>Select Patient</option>
-                    <option>Rajesh Kumar - 98765 43210</option>
-                    <option>Priya Singh - 98765 43211</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Doctor *</label>
-                  <select>
-                    <option>Select Doctor</option>
-                    <option>Dr. Sharma - Cardiology</option>
-                    <option>Dr. Patel - General Medicine</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Appointment Date *</label>
-                  <input type="date" />
-                </div>
-                <div className="form-group">
-                  <label>Time Slot *</label>
-                  <select>
-                    <option>Select Time</option>
-                    <option>10:00 AM</option>
-                    <option>10:30 AM</option>
-                    <option>11:00 AM</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-actions">
-                <button className="btn secondary">Cancel</button>
-                <button className="btn primary">Book Appointment</button>
-              </div>
-            </div>
-          </div>
-        );
+        return <BookAppointment />;
+
+      case 'view-appointments':
+        return <ViewAppointments />;
+
+      case 'reschedule-cancel':
+        return <RescheduleCancel />;
+
+      case 'generate-bills':
+        return <GenerateBills />;
+
+      case 'transaction-history':
+        return <TransactionHistory />;
+
+      case 'pending-payments':
+        return <PendingPayments />;
+
+      case 'profile-settings':
+        return <ProfileSettings />;
 
       default:
         return (
