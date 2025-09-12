@@ -1,36 +1,74 @@
 /* Register Patient Styles - Professional & Clean Design */
 
 .register-patient-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #f8fafc;
+  width: 100%;
   height: 100vh;
+  background: #f8fafc;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.page-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #e2e8f0;
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
 }
 
-.page-title {
-  font-size: 1.875rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.025em;
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
 }
 
-.page-subtitle {
+.top-bar h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  min-width: 300px;
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus-within {
+  background: white;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-bar svg {
   color: #64748b;
-  font-size: 1rem;
-  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #1e293b;
+  width: 100%;
+  font-weight: 400;
+}
+
+.search-bar input::placeholder {
+  color: #94a3b8;
 }
 
 .form-card {
@@ -44,6 +82,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin: 1rem;
 }
 
 .form-card::before {
