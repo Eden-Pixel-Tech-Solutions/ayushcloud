@@ -34,12 +34,21 @@ const Navbar = ({
     },
     {
       id: 'patients',
-      label: 'My Patients',
+      label: 'Patients',
       section: 'main',
       submenu: [
         { id: 'patient-list', label: 'Patient List' },
         { id: 'patient-search', label: 'Search Patients' },
         { id: 'patient-records', label: 'Medical Records' }
+      ]
+    },
+    {
+      id: 'dosha-assessment',
+      label: 'Dosha Assessment',
+      section: 'main',
+      submenu: [
+        { id: 'new-assessment', label: 'New Assessment' },
+        { id: 'assessment-records', label: 'Assessment Records' }
       ]
     },
     {
@@ -60,6 +69,7 @@ const Navbar = ({
         { id: 'dosha-analysis', label: 'Dosha Analysis' },
         { id: 'herbal-remedies', label: 'Herbal Remedies' },
         { id: 'treatment-plans', label: 'Treatment Plans' },
+        { id: 'food-nutrient-explorer', label: 'Food & Nutrient Explorer' },
         { id: 'ayurvedic-diet', label: 'Dietary Recommendations' }
       ]
     },
@@ -71,6 +81,27 @@ const Navbar = ({
         { id: 'patient-reports', label: 'Patient Reports' },
         { id: 'treatment-outcomes', label: 'Treatment Outcomes' },
         { id: 'monthly-summary', label: 'Monthly Summary' }
+      ]
+    },
+    {
+      id: 'diet-management',
+      label: 'Diet Management',
+      section: 'main',
+      submenu: [
+        { id: 'create-diet-chart', label: 'Create Diet Chart' },
+        { id: 'diet-chart-history', label: 'Diet Chart History' },
+        { id: 'saved-diet-charts', label: 'Saved Diet Charts' }
+      ]
+    },
+    {
+      id: 'help-support',
+      label: 'Help & Support',
+      section: 'main',
+      submenu: [
+        { id: 'doctors-chat', label: 'Doctors Chat' },
+        { id: 'documentation', label: 'Documentation / FAQ' },
+        { id: 'contact-support', label: 'Contact Support' },
+        { id: 'feedback', label: 'Feedback' }
       ]
     },
     {
