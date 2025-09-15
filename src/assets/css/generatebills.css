@@ -1,25 +1,10 @@
 /* Generate Bills Styles */
 
 .generate-bills-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
-.page-header {
-  margin-bottom: 2rem;
-}
-
-.page-title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.page-subtitle {
-  color: #64748b;
-  font-size: 1rem;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .bill-form-card {
@@ -28,6 +13,9 @@
   padding: 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid #e2e8f0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
 .form-section {
@@ -53,6 +41,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .form-grid {
@@ -141,25 +131,31 @@
 }
 
 .btn.add-item {
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+  font-weight: 600;
 }
 
 .btn.add-item:hover {
-  background: #059669;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
 }
 
 .btn.remove-item {
-  background: #dc2626;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
   color: white;
-  padding: 0.5rem;
-  min-width: 36px;
+  padding: 0.75rem;
+  min-width: 44px;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
 }
 
 .btn.remove-item:hover {
-  background: #b91c1c;
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
 }
 
 .btn.remove-item:disabled {
@@ -193,27 +189,35 @@
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .table-header {
   display: grid;
-  grid-template-columns: 2fr 80px 120px 120px 60px;
+  grid-template-columns: 3fr 100px 140px 140px 80px;
   gap: 1rem;
-  padding: 1rem;
-  background: #f8fafc;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #374151;
-  border-bottom: 1px solid #e2e8f0;
+  font-weight: 700;
+  color: #1e293b;
+  border-bottom: 2px solid #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .table-row {
   display: grid;
-  grid-template-columns: 2fr 80px 120px 120px 60px;
+  grid-template-columns: 3fr 100px 140px 140px 80px;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.25rem;
   align-items: center;
   border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s;
+}
+
+.table-row:hover {
+  background-color: #f8fafc;
 }
 
 .table-row:last-child {
@@ -222,25 +226,46 @@
 
 .item-description input {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   font-size: 0.875rem;
+  transition: all 0.2s;
+  background: white;
+}
+
+.item-description input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
 }
 
 .table-row input[type="number"] {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   font-size: 0.875rem;
   text-align: center;
+  transition: all 0.2s;
+  background: white;
+}
+
+.table-row input[type="number"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
 }
 
 .amount {
-  font-weight: 600;
+  font-weight: 700;
   color: #059669;
   text-align: right;
+  font-size: 0.9rem;
+  background: #ecfdf5;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1fae5;
 }
 
 .billing-summary {
@@ -251,10 +276,11 @@
 }
 
 .calculation-section {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .calc-row {
@@ -286,20 +312,79 @@
 }
 
 .total-row {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 800;
   color: #1e293b;
-  padding-top: 1rem;
+  padding: 1rem;
   margin-top: 0.5rem;
-  border-top: 2px solid #2563eb;
+  border-top: 3px solid #2563eb;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 8px;
 }
 
 .form-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  padding: 2rem 0 1rem 0;
+  border-top: 2px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 0 0 16px 16px;
+  margin: 1rem -2rem -2rem -2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Search Container Styles */
+.search-container {
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8fafc;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.patient-name {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.875rem;
+}
+
+.patient-details {
+  font-size: 0.75rem;
+  color: #64748b;
 }
 
 /* Responsive Design */

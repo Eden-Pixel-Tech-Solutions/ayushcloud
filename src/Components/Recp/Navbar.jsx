@@ -28,7 +28,6 @@ const Navbar = ({
       section: 'main',
       submenu: [
         { id: 'register-patient', label: 'Register New Patient' },
-        { id: 'view-patients', label: 'View/Edit Patient Details' },
         { id: 'search-patients', label: 'Search Patients' }
       ]
     },
@@ -38,8 +37,8 @@ const Navbar = ({
       section: 'main',
       submenu: [
         { id: 'book-appointment', label: 'Book Appointment' },
-        { id: 'todays-appointments', label: 'View Today\'s Appointments' },
-        { id: 'reschedule', label: 'Reschedule/Cancel' }
+        { id: 'view-appointments', label: 'View Today\'s Appointments' },
+        { id: 'reschedule', label: 'View All Appointments' }
       ]
     },
     {
@@ -48,8 +47,7 @@ const Navbar = ({
       section: 'main',
       submenu: [
         { id: 'generate-bills', label: 'Generate Bills' },
-        { id: 'transaction-history', label: 'View Transaction History' },
-        { id: 'pending-payments', label: 'Pending Payments' }
+        { id: 'transaction-history', label: 'View Transaction History' }
       ]
     },
     {

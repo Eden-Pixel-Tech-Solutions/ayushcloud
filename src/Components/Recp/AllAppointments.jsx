@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, User, Phone, Edit, CheckCircle, AlertCircle, Info, X, Trash2, RotateCcw } from 'lucide-react';
-import '../../assets/css/viewappointments.css';
+import '../../assets/css/allappointments.css';
 
-const ViewAppointments = () => {
+const AllAppointments = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
@@ -38,7 +38,7 @@ const ViewAppointments = () => {
       status: 'pending',
       phone: '+91 98765 43211',
       abhaId: '12-3456-7890-1235',
-      type: 'Routine Checkup',
+      type: 'General Checkup',
       notes: 'Annual health screening'
     },
     {
@@ -50,7 +50,7 @@ const ViewAppointments = () => {
       phone: '+91 98765 43212',
       abhaId: '12-3456-7890-1236',
       type: 'Emergency',
-      notes: 'Severe back pain'
+      notes: 'Chest pain complaint'
     },
     {
       id: 4,
@@ -62,28 +62,30 @@ const ViewAppointments = () => {
       abhaId: '12-3456-7890-1237',
       type: 'Follow-up',
       notes: 'Post-surgery checkup'
+    },
+    {
+      id: 5,
+      patient: 'Amit Sharma',
+      doctor: 'Dr. Verma',
+      time: '02:00 PM',
+      status: 'confirmed',
+      phone: '+91 98765 43214',
+      abhaId: '12-3456-7890-1238',
+      type: 'Consultation',
+      notes: 'Diabetes management'
+    },
+    {
+      id: 6,
+      patient: 'Kavita Jain',
+      doctor: 'Dr. Singh',
+      time: '02:30 PM',
+      status: 'pending',
+      phone: '+91 98765 43215',
+      abhaId: '12-3456-7890-1239',
+      type: 'General Checkup',
+      notes: 'Routine health check'
     }
   ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'confirmed': return 'status-confirmed';
-      case 'pending': return 'status-pending';
-      case 'rescheduled': return 'status-rescheduled';
-      case 'completed': return 'status-completed';
-      case 'cancelled': return 'status-cancelled';
-      default: return 'status-pending';
-    }
-  };
-
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'confirmed': return <CheckCircle size={16} />;
-      case 'pending': return <Clock size={16} />;
-      case 'rescheduled': return <AlertCircle size={16} />;
-      default: return <Clock size={16} />;
-    }
-  };
 
   const filteredAppointments = appointments.filter(appointment => {
     if (filterStatus === 'all') return true;
@@ -158,7 +160,7 @@ const ViewAppointments = () => {
     <div className="view-appointments-container">
       <div className="appointments-list-card">
         <div className="appointments-header">
-          <h3>Today's Appointments ({filteredAppointments.length})</h3>
+          <h3>All Appointments ({filteredAppointments.length})</h3>
         </div>
 
         {filteredAppointments.length > 0 ? (
@@ -183,7 +185,7 @@ const ViewAppointments = () => {
           <div className="no-appointments">
             <Calendar size={48} />
             <h3>No appointments found</h3>
-            <p>No appointments scheduled for today</p>
+            <p>No appointments match the selected criteria</p>
           </div>
         )}
       </div>
@@ -430,4 +432,4 @@ const ViewAppointments = () => {
   );
 };
 
-export default ViewAppointments;
+export default AllAppointments;

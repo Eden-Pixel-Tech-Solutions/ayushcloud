@@ -18,10 +18,9 @@ import RegisterPatient from './RegisterPatient';
 import SearchPatients from './SearchPatients';
 import BookAppointment from './BookAppointment';
 import ViewAppointments from './ViewAppointments';
-import RescheduleCancel from './RescheduleCancel';
+import AllAppointments from './AllAppointments';
 import GenerateBills from './GenerateBills';
 import TransactionHistory from './TransactionHistory';
-import PendingPayments from './PendingPayments';
 import ProfileSettings from './ProfileSettings';
 import '../../assets/css/RecpDashboard.css';
 
@@ -52,8 +51,6 @@ const ReceptionistDashboard = () => {
         return 'Generate Bills';
       case 'transaction-history':
         return 'Transaction History';
-      case 'pending-payments':
-        return 'Pending Payments';
       case 'profile-settings':
         return 'Profile Settings';
       default:
@@ -262,8 +259,8 @@ const ReceptionistDashboard = () => {
       case 'view-appointments':
         return <ViewAppointments />;
 
-      case 'reschedule-cancel':
-        return <RescheduleCancel />;
+      case 'reschedule':
+        return <AllAppointments />;
 
       case 'generate-bills':
         return <GenerateBills />;
@@ -271,8 +268,6 @@ const ReceptionistDashboard = () => {
       case 'transaction-history':
         return <TransactionHistory />;
 
-      case 'pending-payments':
-        return <PendingPayments />;
 
       case 'profile-settings':
         return <ProfileSettings />;
