@@ -4,7 +4,7 @@ import { Users, Building2, Pill, Calendar, TrendingUp, Activity, UserCheck, MapP
 import Navbar from './superNavbar';
 import '../../assets/css/SuperDashboard.css';
 
-function SuperDashboard({ user, onLogout }) {
+function SuperDashboard({ user }) {
     const [activeSection, setActiveSection] = useState('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [expandedMenus, setExpandedMenus] = useState({});
@@ -584,12 +584,6 @@ function SuperDashboard({ user, onLogout }) {
                                 </div>
                             </div>
                         </div>
-                        <button 
-                            onClick={onLogout}
-                            className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors"
-                        >
-                            Logout
-                        </button>
                     </div>
                 );
             default:

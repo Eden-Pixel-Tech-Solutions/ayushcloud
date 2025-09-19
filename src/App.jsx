@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Login from './Components/login';
 import ProtectedRoute from './components/ProtectedRoute';
+import './assets/css/page-header.css';
 
 // Import dashboard components
 import RecpDashboard from './Components/Recp/RecpDashboard';

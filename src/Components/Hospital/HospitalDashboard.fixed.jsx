@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { 
   Users, 
   UserCheck, 
@@ -10,42 +9,23 @@ import {
   Check,
   Shield,
   Download,
+  ChevronRight,
+  Clock,
   Search,
   Filter,
-  Plus,
   ChevronDown,
-  ChevronRight
+  Plus
 } from 'lucide-react';
-import PageHeader from '../Common/PageHeader';
 import Navbar from './governNavbar';
 import RegisteredHospitals from './registered-hospitals';
 import RegistrationApprovals from './registration-approvals';
 import PerformanceMonitoring from './performance-monitoring';
-import RegisteredPractitioners from './RegisteredPractitioners';
-import Licensing from './Licensing';
-import DoctorAnalytics from './DoctorAnalytics';
-import PatientRegistry from './patient-registry';
-import UsageStatistics from './usage-statistics';
-import SecurityLogs from './security-logs';
-import FoodDatabase from './food-database';
-import DietTemplates from './diet-templates';
-import TermMapper from './term-mapper';
-import UsageReports from './Reports/usage-reports';
-import HealthTrends from './Reports/health-trends';
-import ExportReports from './Reports/export-reports';
-
-// Import Compliance & Security components
-import DataPrivacy from './ComplianceSecurity/DataPrivacy';
-import AuditLogs from './ComplianceSecurity/AuditLogs';
-import AccessControls from './ComplianceSecurity/AccessControls';
 import '../../assets/css/HospitalDashboard.css';
 import '../../assets/css/full-width-fix.css';
-import '../../assets/css/food-database.css';
-import '../../assets/css/diet-templates.css';
-import '../../assets/css/term-mapper.css';
 
 const HospitalDashboard = () => {
-  const [activeSection, setActiveSection] = useState('dashboard');
+  const [currentTime] = useState(new Date().toLocaleTimeString());
+  const [activeSection, setActiveSection] = useState('registered-hospitals');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState({});
 
@@ -73,47 +53,38 @@ const HospitalDashboard = () => {
   };
 
   return (
-    <MemoryRouter>
-      <div className="dashboard-container" style={{ width: '100vw', overflowX: 'hidden' }}>
-        <Navbar 
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-          expandedMenus={expandedMenus}
-          setExpandedMenus={setExpandedMenus}
-        />
-        <main className="main-content" style={{ width: 'calc(100vw - 280px)' }}>
-          {activeSection === 'dashboard' && (
-            <PageHeader 
-              title="Dashboard Overview"
-              subtitle="Monitor and manage your healthcare system"
-              breadcrumbs={['Dashboard', 'Overview']}
-            />
-          )}
+    <div className="dashboard-container" style={{ width: '100vw', overflowX: 'hidden' }}>
+      <Navbar 
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        expandedMenus={expandedMenus}
+        setExpandedMenus={setExpandedMenus}
+      />
+      
+      <main className="main-content" style={{ width: 'calc(100vw - 280px)' }}>
+        {/* Header Section */}
+        <div className="dashboard-header">
+          <div className="header-content">
+            <h1>Government Admin Dashboard</h1>
+            <p className="subtitle">Healthcare Management System</p>
+            <div className="breadcrumb">
+              <span>Dashboard</span>
+              <ChevronRight size={14} />
+              <span className="active">Overview</span>
+            </div>
+          </div>
+          <div className="header-actions">
+            <div className="datetime-display">
+              <Clock size={16} />
+              <span>{currentTime}</span>
+            </div>
+          </div>
+        </div>
 
         {/* Main Content Area */}
         <div className="main-content-area">
-          {activeSection === 'registered-hospitals' && <RegisteredHospitals />}
-          {activeSection === 'registration-approvals' && <RegistrationApprovals />}
-          {activeSection === 'performance-monitoring' && <PerformanceMonitoring />}
-          {activeSection === 'registered-practitioners' && <RegisteredPractitioners />}
-          {activeSection === 'licensing' && <Licensing />}
-          {activeSection === 'doctor-analytics' && <DoctorAnalytics />}
-          {activeSection === 'patient-registry' && <PatientRegistry />}
-          {activeSection === 'usage-statistics' && <UsageStatistics />}
-          {activeSection === 'security-logs' && <SecurityLogs />}
-          {activeSection === 'food-database' && <FoodDatabase />}
-          {activeSection === 'diet-templates' && <DietTemplates />}
-          {activeSection === 'term-mapper' && <TermMapper />}
-          {activeSection === 'usage-reports' && <UsageReports />}
-          {activeSection === 'health-trends' && <HealthTrends />}
-          {activeSection === 'export-reports' && <ExportReports />}
-          
-          {/* Compliance & Security */}
-          {activeSection === 'data-privacy' && <DataPrivacy />}
-          {activeSection === 'audit-logs' && <AuditLogs />}
-          {activeSection === 'access-controls' && <AccessControls />}
           {activeSection === 'dashboard' && (
             <>
               <div className="dashboard-section">
@@ -253,9 +224,8 @@ const HospitalDashboard = () => {
           {activeSection === 'registration-approvals' && <RegistrationApprovals />}
           {activeSection === 'performance-monitoring' && <PerformanceMonitoring />}
         </div>
-        </main>
-      </div>
-    </MemoryRouter>
+      </main>
+    </div>
   );
 };
 

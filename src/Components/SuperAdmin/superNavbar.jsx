@@ -36,8 +36,14 @@ const Navbar = ({
   sidebarOpen, 
   setSidebarOpen, 
   expandedMenus, 
-  setExpandedMenus 
+  setExpandedMenus
 }) => {
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem('currentUser');
+    // Redirect to login page
+    window.location.href = '/login';
+  };
   const navigationItems = [
     {
       id: 'dashboard',
@@ -209,7 +215,10 @@ const Navbar = ({
             );
           })}
           
-          <button className="nav-item logout">
+          <button 
+            className="nav-item logout"
+            onClick={handleLogout}
+          >
             <LogOut size={20} />
             <span>Logout</span>
           </button>
