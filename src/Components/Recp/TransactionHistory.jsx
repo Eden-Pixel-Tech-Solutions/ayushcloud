@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Search, Filter, Download, Eye, IndianRupee, CreditCard, Banknote } from 'lucide-react';
+import { Calendar, Search, Filter, Download, Eye, IndianRupee, CreditCard, Banknote, Info, X } from 'lucide-react';
 import '../../assets/css/transactionhistory.css';
 
 const TransactionHistory = () => {
@@ -10,12 +10,17 @@ const TransactionHistory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterPaymentMode, setFilterPaymentMode] = useState('all');
+  const [showPatientModal, setShowPatientModal] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   const transactions = [
     {
       id: 'TXN001',
       billId: 'BILL001',
       patient: 'Rajesh Kumar',
+      phone: '+91 98765 43210',
+      email: 'rajesh.kumar@email.com',
+      address: '123 Main Street, Delhi',
       amount: 1500,
       paymentMode: 'cash',
       status: 'completed',
@@ -28,6 +33,9 @@ const TransactionHistory = () => {
       id: 'TXN002',
       billId: 'BILL002',
       patient: 'Priya Singh',
+      phone: '+91 98765 43211',
+      email: 'priya.singh@email.com',
+      address: '456 Park Avenue, Mumbai',
       amount: 2800,
       paymentMode: 'card',
       status: 'completed',
@@ -40,6 +48,9 @@ const TransactionHistory = () => {
       id: 'TXN003',
       billId: 'BILL003',
       patient: 'Mohammed Ali',
+      phone: '+91 98765 43212',
+      email: 'mohammed.ali@email.com',
+      address: '789 Garden Road, Bangalore',
       amount: 800,
       paymentMode: 'upi',
       status: 'pending',
@@ -52,6 +63,9 @@ const TransactionHistory = () => {
       id: 'TXN004',
       billId: 'BILL004',
       patient: 'Sunita Devi',
+      phone: '+91 98765 43213',
+      email: 'sunita.devi@email.com',
+      address: '321 Lake View, Chennai',
       amount: 3200,
       paymentMode: 'card',
       status: 'completed',
@@ -64,6 +78,9 @@ const TransactionHistory = () => {
       id: 'TXN005',
       billId: 'BILL005',
       patient: 'Amit Sharma',
+      phone: '+91 98765 43214',
+      email: 'amit.sharma@email.com',
+      address: '654 Hill Station, Pune',
       amount: 450,
       paymentMode: 'cash',
       status: 'failed',
@@ -126,13 +143,22 @@ const TransactionHistory = () => {
     // Handle export logic here
   };
 
+  const handleMoreInfo = (transaction) => {
+    setSelectedPatient({
+      name: transaction.patient,
+      phone: transaction.phone,
+      billingDate: transaction.date
+    });
+    setShowPatientModal(true);
+  };
+
+  const closePatientModal = () => {
+    setShowPatientModal(false);
+    setSelectedPatient(null);
+  };
+
   return (
     <div className="transaction-history-container">
-      <div className="page-header">
-        <h2 className="page-title">Transaction History</h2>
-        <p className="page-subtitle">View and manage all payment transactions</p>
-      </div>
-
       <div className="controls-section">
         <div className="search-filter-row">
           <div className="search-bar">
@@ -287,11 +313,15 @@ const TransactionHistory = () => {
                 </div>
 
                 <div className="actions">
-                  <button className="action-btn view" title="View Details">
-                    <Eye size={16} />
+                  <button 
+                    className="action-btn info" 
+                    title="More Info"
+                    onClick={() => handleMoreInfo(transaction)}
+                  >
+                    <Info size={18} />
                   </button>
                   <button className="action-btn download" title="Download Receipt">
-                    <Download size={16} />
+                    <Download size={18} />
                   </button>
                 </div>
               </div>
@@ -305,6 +335,37 @@ const TransactionHistory = () => {
           </div>
         )}
       </div>
+
+      {/* Patient Info Modal */}
+      {showPatientModal && selectedPatient && (
+        <div className="modal-overlay" onClick={closePatientModal}>
+          <div className="patient-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Patient Contact Details</h3>
+              <button className="close-btn" onClick={closePatientModal}>
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="patient-detail-row">
+                <span className="detail-label">Patient Name:</span>
+                <span className="detail-value">{selectedPatient.name}</span>
+              </div>
+              
+              <div className="patient-detail-row">
+                <span className="detail-label">Contact Number:</span>
+                <span className="detail-value">{selectedPatient.phone}</span>
+              </div>
+              
+              <div className="patient-detail-row">
+                <span className="detail-label">Billing Date:</span>
+                <span className="detail-value">{selectedPatient.billingDate}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

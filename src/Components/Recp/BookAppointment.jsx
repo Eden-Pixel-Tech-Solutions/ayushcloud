@@ -12,6 +12,10 @@ const BookAppointment = () => {
     notes: ''
   });
 
+  const [patientSearch, setPatientSearch] = useState('');
+  const [showPatientDropdown, setShowPatientDropdown] = useState(false);
+  const [filteredPatients, setFilteredPatients] = useState([]);
+
   const [availableSlots, setAvailableSlots] = useState([
     '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', 
     '11:30 AM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM'
@@ -38,6 +42,32 @@ const BookAppointment = () => {
     }));
   };
 
+  const handlePatientSearch = (e) => {
+    const value = e.target.value;
+    setPatientSearch(value);
+    
+    if (value.length > 0) {
+      const filtered = patients.filter(patient => 
+        patient.name.toLowerCase().includes(value.toLowerCase()) ||
+        patient.mobile.includes(value)
+      );
+      setFilteredPatients(filtered);
+      setShowPatientDropdown(true);
+    } else {
+      setFilteredPatients([]);
+      setShowPatientDropdown(false);
+    }
+  };
+
+  const selectPatient = (patient) => {
+    setFormData(prev => ({
+      ...prev,
+      patientId: patient.id
+    }));
+    setPatientSearch(`${patient.name} - ${patient.mobile}`);
+    setShowPatientDropdown(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Appointment Data:', formData);
@@ -57,33 +87,41 @@ const BookAppointment = () => {
 
   return (
     <div className="book-appointment-container">
-      <div className="page-header">
-        <h2 className="page-title">Book Appointment</h2>
-        <p className="page-subtitle">Schedule appointment with doctor and time slot</p>
-      </div>
-
       <div className="appointment-form-card">
         <form onSubmit={handleSubmit}>
           <div className="form-grid">
             <div className="form-group">
-              <label htmlFor="patientId">
+              <label htmlFor="patientSearch">
                 <User size={16} />
                 Select Patient *
               </label>
-              <select
-                id="patientId"
-                name="patientId"
-                value={formData.patientId}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="">Choose Patient</option>
-                {patients.map(patient => (
-                  <option key={patient.id} value={patient.id}>
-                    {patient.name} - {patient.mobile}
-                  </option>
-                ))}
-              </select>
+              <div className="searchable-select">
+                <input
+                  type="text"
+                  id="patientSearch"
+                  name="patientSearch"
+                  value={patientSearch}
+                  onChange={handlePatientSearch}
+                  placeholder="Type patient name or mobile number..."
+                  required
+                />
+                {showPatientDropdown && filteredPatients.length > 0 && (
+                  <div className="dropdown-list">
+                    {filteredPatients.map(patient => (
+                      <div
+                        key={patient.id}
+                        className="dropdown-item"
+                        onClick={() => selectPatient(patient)}
+                      >
+                        <div className="patient-info">
+                          <span className="patient-name">{patient.name}</span>
+                          <span className="patient-mobile">{patient.mobile}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="form-group">
@@ -143,7 +181,7 @@ const BookAppointment = () => {
                 ))}
               </select>
             </div>
-
+            
             <div className="form-group">
               <label htmlFor="appointmentType">Appointment Type</label>
               <select
@@ -166,10 +204,11 @@ const BookAppointment = () => {
                 name="notes"
                 value={formData.notes}
                 onChange={handleInputChange}
-                placeholder="Any specific requirements or notes for the appointment"
+                placeholder="Any additional notes or special instructions for the appointment..."
                 rows="3"
               />
             </div>
+
           </div>
 
           <div className="appointment-summary">

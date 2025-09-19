@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Eye, Edit, Phone } from 'lucide-react';
+import { Search, Eye, Edit, Trash2 } from 'lucide-react';
 import '../../assets/css/searchpatients.css';
 
 const SearchPatients = () => {
@@ -58,11 +58,6 @@ const SearchPatients = () => {
 
   return (
     <div className="search-patients-container">
-      <div className="page-header">
-        <h2 className="page-title">Search Patients</h2>
-        <p className="page-subtitle">Search patients by ID, mobile number, or name</p>
-      </div>
-
       <div className="search-card">
         <div className="search-controls">
           <div className="search-type-selector">
@@ -132,8 +127,8 @@ const SearchPatients = () => {
                     <button className="action-btn edit" title="Edit Patient">
                       <Edit size={16} />
                     </button>
-                    <button className="action-btn call" title="Call Patient">
-                      <Phone size={16} />
+                    <button className="action-btn delete" title="Delete Patient">
+                      <Trash2 size={16} />
                     </button>
                   </div>
                 </div>

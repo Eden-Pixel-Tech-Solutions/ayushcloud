@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Calendar, FileText, IndianRupee, Printer, Download, Plus, Trash2 } from 'lucide-react';
+import { User, Calendar, FileText, IndianRupee, Printer, Download, Plus, Trash2, Search } from 'lucide-react';
 import '../../assets/css/generatebills.css';
 
 const GenerateBills = () => {
@@ -14,6 +14,10 @@ const GenerateBills = () => {
     tax: 18,
     notes: ''
   });
+
+  const [patientSearch, setPatientSearch] = useState('');
+  const [showPatientDropdown, setShowPatientDropdown] = useState(false);
+  const [filteredPatients, setFilteredPatients] = useState([]);
 
   const patients = [
     { id: 1, name: 'Rajesh Kumar', abhaId: '12-3456-7890-1234', phone: '+91 98765 43210' },
@@ -42,6 +46,33 @@ const GenerateBills = () => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handlePatientSearch = (e) => {
+    const value = e.target.value;
+    setPatientSearch(value);
+    
+    if (value.length > 0) {
+      const filtered = patients.filter(patient => 
+        patient.name.toLowerCase().includes(value.toLowerCase()) ||
+        patient.phone.includes(value) ||
+        patient.abhaId.includes(value)
+      );
+      setFilteredPatients(filtered);
+      setShowPatientDropdown(true);
+    } else {
+      setFilteredPatients([]);
+      setShowPatientDropdown(false);
+    }
+  };
+
+  const selectPatient = (patient) => {
+    setBillData(prev => ({
+      ...prev,
+      patientId: patient.id
+    }));
+    setPatientSearch(patient.name);
+    setShowPatientDropdown(false);
   };
 
   const handleItemChange = (index, field, value) => {
@@ -115,57 +146,59 @@ const GenerateBills = () => {
 
   return (
     <div className="generate-bills-container">
-      <div className="page-header">
-        <h2 className="page-title">Generate Bills</h2>
-        <p className="page-subtitle">Create and manage patient billing</p>
-      </div>
-
       <div className="bill-form-card">
         <form onSubmit={handleSubmit}>
           <div className="form-section">
             <h3>Patient Information</h3>
             <div className="form-grid">
               <div className="form-group">
-                <label htmlFor="patientId">
-                  <User size={16} />
-                  Select Patient *
+                <label htmlFor="patientSearch">
+                  <Search size={16} />
+                  Search Patient *
                 </label>
-                <select
-                  id="patientId"
-                  name="patientId"
-                  value={billData.patientId}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Choose Patient</option>
-                  {patients.map(patient => (
-                    <option key={patient.id} value={patient.id}>
-                      {patient.name} - {patient.phone}
-                    </option>
-                  ))}
-                </select>
+                <div className="search-container">
+                  <input
+                    type="text"
+                    id="patientSearch"
+                    name="patientSearch"
+                    value={patientSearch}
+                    onChange={handlePatientSearch}
+                    placeholder="Search by name, phone, or ABHA ID..."
+                    required
+                  />
+                  {showPatientDropdown && filteredPatients.length > 0 && (
+                    <div className="dropdown-list">
+                      {filteredPatients.map(patient => (
+                        <div
+                          key={patient.id}
+                          className="dropdown-item"
+                          onClick={() => selectPatient(patient)}
+                        >
+                          <div className="patient-info">
+                            <span className="patient-name">{patient.name}</span>
+                            <span className="patient-details">{patient.phone} • {patient.abhaId}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="appointmentId">
-                  <Calendar size={16} />
-                  Related Appointment
+                <label htmlFor="patientPhone">
+                  <User size={16} />
+                  Phone Number *
                 </label>
-                <select
-                  id="appointmentId"
-                  name="appointmentId"
-                  value={billData.appointmentId}
-                  onChange={handleInputChange}
-                  disabled={!billData.patientId}
-                >
-                  <option value="">Select Appointment (Optional)</option>
-                  {filteredAppointments.map(appointment => (
-                    <option key={appointment.id} value={appointment.id}>
-                      {appointment.doctor} - {appointment.date} ({appointment.type})
-                    </option>
-                  ))}
-                </select>
+                <input
+                  type="tel"
+                  id="patientPhone"
+                  name="patientPhone"
+                  placeholder="Enter phone number"
+                  required
+                />
               </div>
+
 
               <div className="form-group">
                 <label htmlFor="billDate">

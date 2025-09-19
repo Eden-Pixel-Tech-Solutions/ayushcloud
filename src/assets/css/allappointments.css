@@ -26,55 +26,63 @@
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
-  align-items: end;
+  align-items: center;
 }
 
-.date-selector,
-.status-filter {
+.date-selector {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.date-selector label,
-.status-filter label {
-  font-size: 0.875rem;
-  font-weight: 600;
+.date-selector label {
+  font-weight: 500;
   color: #374151;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.date-selector input,
+.date-selector input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.status-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-filter label {
+  font-weight: 500;
+  color: #374151;
+}
+
 .status-filter select {
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 0.875rem;
   background: white;
-  min-width: 180px;
 }
 
 .appointments-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .stat-item {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
-  transition: all 0.2s;
-}
-
-.stat-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .stat-item.confirmed {
@@ -84,17 +92,17 @@
 
 .stat-item.pending {
   border-color: #f59e0b;
-  background: linear-gradient(135deg, #fffbeb 0%, #fefce8 100%);
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
 }
 
 .stat-item.rescheduled {
   border-color: #3b82f6;
-  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
 }
 
 .stat-number {
   display: block;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 0.25rem;
@@ -200,9 +208,10 @@
   grid-template-columns: auto 1fr auto auto;
   gap: 1.5rem;
   align-items: center;
-  padding: 1.5rem;
-  border: 1px solid #e2e8f0;
+  background: white;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
+  padding: 1.5rem;
   transition: all 0.2s;
 }
 
@@ -213,108 +222,99 @@
 
 .appointment-time {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  min-width: 80px;
-  color: #2563eb;
+  color: #374151;
+  font-weight: 600;
+  min-width: 120px;
 }
 
 .appointment-time .time {
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .appointment-info {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .patient-section {
-  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .patient-name {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
   font-weight: 600;
   color: #1e293b;
-  margin-bottom: 0.25rem;
+  font-size: 1rem;
 }
 
 .patient-details {
   display: flex;
   gap: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #64748b;
 }
 
 .doctor-section {
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
 }
 
 .doctor-name {
-  font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
-  margin-bottom: 0.25rem;
 }
 
 .appointment-type {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #64748b;
-  background: #f1f5f9;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  display: inline-block;
 }
 
 .appointment-notes {
-  font-size: 0.75rem;
-  color: #64748b;
-  font-style: italic;
   margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #f9fafb;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #374151;
 }
 
 .appointment-status {
-  min-width: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 .status-badge {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: capitalize;
 }
 
-.status-confirmed {
+.status-badge.confirmed {
   background: #dcfce7;
   color: #166534;
 }
 
-.status-pending {
+.status-badge.pending {
   background: #fef3c7;
   color: #92400e;
 }
 
-.status-rescheduled {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-.status-completed {
-  background: #f3e8ff;
-  color: #7c3aed;
-}
-
-.status-cancelled {
-  background: #fee2e2;
-  color: #dc2626;
+.status-badge.rescheduled {
+  background: #e0e7ff;
+  color: #3730a3;
 }
 
 .appointment-actions {
@@ -323,24 +323,24 @@
 }
 
 .action-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   transition: all 0.2s;
 }
 
 .action-btn.call {
-  background: #f59e0b;
-  color: white;
+  background: #dbeafe;
+  color: #1d4ed8;
 }
 
 .action-btn.call:hover {
-  background: #d97706;
+  background: #bfdbfe;
 }
 
 .action-btn.edit {
@@ -754,55 +754,4 @@
 .no-appointments svg {
   margin-bottom: 1rem;
   opacity: 0.5;
-}
-
-.no-appointments h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.no-appointments p {
-  font-size: 0.875rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .view-appointments-container {
-    padding: 1rem;
-  }
-
-  .appointments-controls {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .appointments-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .appointments-list-card {
-    padding: 1.5rem;
-  }
-
-  .appointment-card {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    text-align: left;
-  }
-
-  .appointment-time {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .patient-details {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .appointment-actions {
-    justify-content: flex-end;
-  }
 }

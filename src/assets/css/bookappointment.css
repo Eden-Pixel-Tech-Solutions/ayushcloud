@@ -1,9 +1,9 @@
 /* Book Appointment Styles */
 
 .book-appointment-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .page-header {
@@ -32,8 +32,8 @@
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -59,12 +59,12 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 0.75rem;
+  padding: 1rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   transition: all 0.2s;
-  background: white;
+  background: white !important;
   font-family: inherit;
 }
 
@@ -72,13 +72,80 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #d1d5db !important;
+  box-shadow: none !important;
+  background: white !important;
+}
+
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+  background: white !important;
+  border-color: #d1d5db !important;
+}
+
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  background: white !important;
+  border-color: #d1d5db !important;
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 80px;
+}
+
+/* Searchable Select Styles */
+.searchable-select {
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8fafc;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.patient-name {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.875rem;
+}
+
+.patient-mobile {
+  font-size: 0.75rem;
+  color: #64748b;
 }
 
 .appointment-summary {
@@ -97,34 +164,39 @@
 }
 
 .summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .summary-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 }
 
 .summary-item:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .summary-label {
   font-size: 0.875rem;
-  font-weight: 500;
-  color: #64748b;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
 }
 
 .summary-value {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #1e293b;
-  text-align: right;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .form-actions {
